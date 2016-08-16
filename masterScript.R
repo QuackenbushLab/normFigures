@@ -1,11 +1,21 @@
-if(!require(devtools)){
-	install.packages("devtools")
-}
-if(!require(yarn)){
-	devtools::install_github("quackenbushlab/yarn")
-}
-library(yarn,RColorBrewer,rafalib,dplyr,calibrate,edgeR,gplots,tidyr,)
 # This script will run the pipeline
+
+source("https://bioconductor.org/biocLite.R")
+download_not_installed<-function(x){
+  for(i in x){
+    if(!require(i,character.only=TRUE)){
+      biocLite(i)
+      library(i,character.only=TRUE)
+    }
+  }
+}
+reqd = c("RColorBrewer","rafalib","calibrate","edgeR","gplots","dplyr","devtools")
+download_not_installed(reqd)
+
+if(!require(yarn)){
+        devtools::install_github("quackenbushlab/yarn")
+}
+
 rm(list=ls())
 currentDir = getwd()
 if(!dir.exists("data")){
