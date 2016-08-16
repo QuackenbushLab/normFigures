@@ -24,7 +24,7 @@ names(res) = tissues
 
 keep = sapply(sapply(seq(tissues),function(i){grep("11ILO",rownames(res[[i]][[1]]))}),length)
 
-pdf("gtex_sfigure1_checkMisAnnotation.pdf",width=10,height=10)
+pdf("../figures/gtex_sfigure1_checkMisAnnotation.pdf",width=10,height=10)
 mypar(4,4,brewer.name="Set1")
 for(i in which(keep==1)){
 	x = res[[i]]

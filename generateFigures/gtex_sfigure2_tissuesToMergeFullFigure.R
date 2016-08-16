@@ -26,7 +26,7 @@ panelK = panelKL[,-grep("Cere",pData(panelKL)$SMTSD)]
 panelL = panelK[,-grep("basal",pData(panelK)$SMTSD)]
 
 
-pdf("gtex_sfigure2_tissuesToMergeFull.pdf",width=11.25,height=15)
+pdf("../figures/gtex_sfigure2_tissuesToMergeFull.pdf",width=11.25,height=15)
 mypar(4,3,brewer.name="Set3",brewer.n=12)
 temporaryObject %>% 
 	filterSamples("Adipose Tissue","SMTS",keepOnly=TRUE) %>% 

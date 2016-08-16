@@ -5,7 +5,7 @@ library(grid)
 source("helper.R")
 obj = readRDS("../data/gtex_normalized.rds")
 
-pdf("gtex_figure4_normalizeTissues.pdf",width=10,height=5)
+pdf("../figures/gtex_figure4_normalizeTissues.pdf",width=10,height=5)
 	mypar(1,2,brewer.name="Set3")
 	plotDensity(obj,groups="our_subtypes",
 		ylab="Density",xlab="Log2 raw expression")
