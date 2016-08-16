@@ -1,4 +1,4 @@
-# normalizationFigures
+# normFigures
 
 Preprocesses entire dataset and then produces all figures (without (a), (b), etc):
 
