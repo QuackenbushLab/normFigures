@@ -29,13 +29,13 @@ heatmapCols = colorRampPalette(brewer.pal(9, "RdBu"))(50)
 
 n = 15
 
-mat = extractMatrix(obj_strict, TRUE, TRUE)
+mat = yarn:::extractMatrix(obj_strict, TRUE, TRUE)
 genesToKeep = which(rowSums(mat) > 0)
 geneStats = apply(mat[genesToKeep, ], 1, sd)
 geneIndices = genesToKeep[order(geneStats, decreasing = TRUE)[seq_len(n)]]
 fd_strict = fData(obj_strict)[geneIndices,]
 
-mat = extractMatrix(obj_sane, TRUE, TRUE)
+mat = yarn:::extractMatrix(obj_sane, TRUE, TRUE)
 genesToKeep = which(rowSums(mat) > 0)
 geneStats = apply(mat[genesToKeep, ], 1, sd)
 geneIndices = genesToKeep[order(geneStats, decreasing = TRUE)[seq_len(n)]]
