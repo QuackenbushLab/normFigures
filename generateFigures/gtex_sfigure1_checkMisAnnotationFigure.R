@@ -42,4 +42,6 @@ for(i in which(keep==1)){
 	points(x=smpl[1],y=smpl[2],pch=21,bg=smplg,cex=2)
 	textxy(X=smpl[1],Y=smpl[2],labs="GTEX-11ILO",offset=-.8)
 }
+plot(1,xaxt="n",yaxt="n",pch="",xlab="",ylab="",bty="n")
+legend("topleft",legend=levels(pData(obj)$gender),fill=1:2)
 dev.off()

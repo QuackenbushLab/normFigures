@@ -21,12 +21,12 @@ panelF = panelF[,-grep("Mucosa",pData(panelF)$SMTSD)]
 pData(panelF)$SMTSD = droplevels(pData(panelF)$SMTSD)
 
 
-pdf("../figures/gtex_figure2_tissuesToMerge.pdf",width=12,height=8)
-mypar(2,3,brewer.name="Set1")
+pdf("../figures/gtex_figure2_tissuesToMerge.pdf",width=12,height=4) #8
+mypar(1,3,brewer.name="Set1") # mypar(2,3,brewer.name="Set1")
 ret = checkTissuesToMerge(panelA,"SMTS","SMTSD",n=1000,legendPos="topleft")
 ret = checkTissuesToMerge(panelB,"SMTS","SMTSD",n=1000,legendPos="topleft")
-ret = checkTissuesToMerge(panelC,"SMTS","SMTSD",n=1000,legendPos="topleft")
-ret = checkTissuesToMerge(panelD,"SMTS","SMTSD",n=1000,legendPos="topleft")
+#ret = checkTissuesToMerge(panelC,"SMTS","SMTSD",n=1000,legendPos="topleft")
+#ret = checkTissuesToMerge(panelD,"SMTS","SMTSD",n=1000,legendPos="topleft")
 ret = checkTissuesToMerge(panelE,"SMTS","SMTSD",n=1000,legendPos="topleft")
-ret = checkTissuesToMerge(panelF,"SMTS","SMTSD",n=1000,legendPos="topright")
+#ret = checkTissuesToMerge(panelF,"SMTS","SMTSD",n=1000,legendPos="topright")
 dev.off()

@@ -1,10 +1,12 @@
 library(yarn)
 library(rafalib)
 library(dplyr)
+source("helper.R")
 
 obj = readRDS("../data/gtex_normalized.rds")
 
 cl = pData(obj)$our_subtypes
+cl = abbreviations(cl,abb=FALSE)
 counts = exprs(obj)
 sorted_counts = apply(counts,2,sort)
 
