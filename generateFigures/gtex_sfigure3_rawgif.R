@@ -26,4 +26,4 @@ for (i in 1:10){
   dev.off()
 }
 
-system("convert -delay 80 ../figures/tissue_groups*.png ../figures/raw_tissue_groups.gif")
+system("convert -delay 80 ../figures/tissue_groups*.png ../figures/gtex_sfigure3_raw_dist.gif")
