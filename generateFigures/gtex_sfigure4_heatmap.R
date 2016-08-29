@@ -27,25 +27,25 @@ tissues = pData(obj_sane)$our_subtypes
 heatmapColColors=brewer.pal(12,"Set3")[as.integer(factor(tissues))]
 heatmapCols = colorRampPalette(brewer.pal(9, "RdBu"))(50)
 
-n = 25
+n = 15
 
 mat = yarn:::extractMatrix(obj_strict, TRUE, TRUE)
-genesToKeep = which(rowSums(mat) > 0)
-geneStats = apply(mat[genesToKeep, ], 1, sd)
-geneIndices = genesToKeep[order(geneStats, decreasing = TRUE)[seq_len(n)]]
+geneStats = apply(mat, 1, sd)
+geneIndices = order(geneStats, decreasing = TRUE)[seq_len(n)]
 fd_strict = fData(obj_strict)[geneIndices,]
 
 mat = yarn:::extractMatrix(obj_sane, TRUE, TRUE)
-genesToKeep = which(rowSums(mat) > 0)
-geneStats = apply(mat[genesToKeep, ], 1, sd)
-geneIndices = genesToKeep[order(geneStats, decreasing = TRUE)[seq_len(n)]]
+geneStats = apply(mat, 1, sd)
+geneIndices = order(geneStats, decreasing = TRUE)[seq_len(n)]
 fd_sane = fData(obj_sane)[geneIndices,]
 
 pdf("../figures/gtex_sfigure4_heatmap.pdf")
-	plotHeatmap(obj_strict,normalized=FALSE,log=TRUE,trace="none",n=n,
-	 ColSideColors = heatmapColColors,cexCol = .6,
+	plotHeatmap(obj_strict,normalized=TRUE,log=TRUE,trace="none",n=n,
+	 ColSideColors = heatmapColColors,cexCol=.6,cexRow=.6,
 	 labRow=as.character(fd_strict$geneNames),labCol="")
-	plotHeatmap(obj_sane,normalized=FALSE,log=TRUE,trace="none",n=n,
-	 ColSideColors = heatmapColColors,cexCol = .6,
+	plotHeatmap(obj_sane,normalized=TRUE,log=TRUE,trace="none",n=n,
+	 ColSideColors = heatmapColColors,cexCol=.6,cexRow=.6,
 	 labRow=as.character(fd_sane$geneNames),labCol="")
+	plot(1,xaxt="n",yaxt="n",bty="l")
+	legend("topright",legend=paste("Artery",c("aorta","coronary","tibial")),fill=1:3)
 dev.off()

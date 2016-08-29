@@ -4,13 +4,13 @@ library(rafalib)
 obj = readRDS("../data/gtex_merged_tissues.rds")
 cl = names(sort(table(pData(obj)$SMTS),decreasing=TRUE))
 groups = factor(pData(obj)$SMTS,levels=names(sort(table(pData(obj)$SMTS),decreasing=TRUE)))
+mins = min(table(pData(obj)$our_subtypes))/2
 
 for (i in 1:10){
   subsetTypes<-cl[1:i]
   groups2 = groups[which(groups%in%subsetTypes)]; groups2 = droplevels(groups2)
   obj2 = filterSamples(obj,ids=subsetTypes,"SMTS",keepOnly=TRUE)
-  obj2 = filterLowGenes(obj2,"SMTS")
-
+  obj2 = filterLowGenes(obj2,"SMTS",minSamples=mins)
 
   fileName=paste("../figures/tissue_groups",as.character(i),".png",sep="")
   png(fileName,
@@ -22,7 +22,7 @@ for (i in 1:10){
 	bigpar(1)
 
 	plotDensity(obj2,groups2,legendPos="topright",
-		ylab="Density",xlab="Log2 raw expression")
+		ylab="Density",xlab="Log2-transformed expression")
   dev.off()
 }
 
