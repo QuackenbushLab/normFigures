@@ -36,13 +36,27 @@ rmse_sorted_counts_ts = sapply(seq(sorted_counts_ts),function(i){
 	})
 
 rmse_sorted_counts_ts = unlist(rmse_sorted_counts_ts)
-pdf("../figures/gtex_sfigure5_rmse.pdf",width=14,height=7)
+
+
+pdf("../figures/gtex_figure_rmse.pdf",width=14,height=7)
 	mypar(1,2,mar=c(15.5, 2.5, 1.6, 1.1))
-	boxplot(rmse_sorted_counts~cl,las=3,ylim=c(0,2.5),col=1:38,ylab="RMSE",main="RMSE of sample to full reference")
+	boxplot(rmse_sorted_counts~cl,las=2,xaxt="n",
+		ylim=c(0,2.5),col=1:38,ylab="RMSE",main="RMSE of sample to full reference")
 	abline(h=median(rmse_sorted_counts),lty=2,col="red")
 	# abline(h=.2,lty=2,col="red")
-	boxplot(rmse_sorted_counts_ts~cl,las=3,ylim=c(0,2.5),col=1:38,ylab="RMSE",main="RMSE of sample to tissue reference")
+	end_point = 0.5 + 38
+	text(seq(1.5,end_point,by=1), par("usr")[3]-0.25, 
+		srt = 60, adj= 1, xpd = TRUE,
+		labels = levels(cl))
+
+
+	boxplot(rmse_sorted_counts_ts~cl,las=2,xaxt="n",
+		ylim=c(0,2.5),col=1:38,ylab="RMSE",main="RMSE of sample to tissue reference")
 	abline(h=median(rmse_sorted_counts_ts),lty=2,col="red")
 	# abline(h=.2,lty=2,col="red")
+	text(seq(1.5,end_point,by=1), par("usr")[3]-0.25, 
+		srt = 60, adj= 1, xpd = TRUE,
+		labels = levels(cl))
+
 dev.off()
 # plot(y=rmse_sorted_counts,x=rmse_sorted_counts_ts,pch=21,bg=cl)

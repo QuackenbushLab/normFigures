@@ -5,16 +5,16 @@ library(grid)
 source("helper.R")
 obj = readRDS("../data/gtex_normalized.rds")
 
-pdf("../figures/gtex_figure4_normalizeTissues.pdf",width=10,height=5)
+pdf("../figures/gtex_sfigure5_normalizeTissues.pdf",width=10,height=5)
 	mypar(1,2,brewer.name="Set3")
 	plotDensity(obj,groups="our_subtypes",
-		ylab="Density",xlab="Log2 raw expression")
+		ylab="Density",xlab=expression('log'[2]*' raw expression'))
 	groups = as.character(pData(obj)[, "our_subtypes"])
 	groups = abbreviations(groups,abb=FALSE)
 	legend("topright", legend = levels(groups),cex=.5,
 		fill = 1:length(levels(groups)),box.col = NA)
 	plotDensity(obj,groups="our_subtypes",normalized=TRUE,ylab="Density",
-		xlab="Log2 normalized expression")
+		xlab=expression('log'[2]*' normalized expression'))
 	u <- par("usr")
 	v <- c(
 	  grconvertX(u[1:2], "user", "ndc"),
